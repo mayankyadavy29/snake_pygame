@@ -13,5 +13,6 @@ clock = pg.time.Clock()
 BLOCK_SIZE = 40
 BLOCKS_X = width//BLOCK_SIZE
 BLOCKS_Y = height//BLOCK_SIZE
+food_list = [2, 2, 2, 2, 5]
 
 
