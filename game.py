@@ -11,7 +11,7 @@ def main():
     dead = pg.font.Font("assets/fonts/Slow Death.ttf", 60).render("YOU DIED !!", True, "brown")
     dead_rect = dead.get_rect().move(((width - dead.get_width()) // 2, (height - dead.get_height()) // 2))
     restart = pg.font.Font("assets/fonts/Quick Starter.ttf", 50).render("RESTART", True, "blue")
-    restart_rect = restart.get_rect().move((dead_rect.left + dead.get_width()//2 - restart.get_width()//2, dead_rect.bottom + 40))
+    restart_rect = restart.get_rect(midtop=(dead_rect.centerx, dead_rect.bottom + 40))
     restart_border_rect = pg.Rect(restart_rect)
     restart_border_rect = restart_border_rect.inflate(10, 20)
     food = Block(vec(random.randint(0, BLOCKS_X-1), random.randint(0, BLOCKS_Y-1)), 2)
@@ -52,6 +52,10 @@ def main():
                                                          (dead_rect.top - dead_score.get_height() - 20))
             screen.blit(dead_score, dead_score_rect)
             pg.draw.rect(screen, "blue", restart_border_rect, 5, 5)
+        if not snake.dead:
+            food.draw()
+            score = pg.font.SysFont("comicsans", 30).render(str(snake.score), True, "yellow")
+            screen.blit(score, (0, 0))
         pg.display.update()
         clock.tick(10)
 

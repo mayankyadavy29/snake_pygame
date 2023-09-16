@@ -40,13 +40,13 @@ class Snake:
     def __move_blocks(self, new_pos, prev, food):
         self.blocks[0].move(new_pos)
         self.blocks[0].draw()
-        self.check_for_dead(new_pos)
-        self.check_for_food(self.blocks[0], food)
         for i in range(1, len(self.blocks)):
             cur, prev = prev, copy.deepcopy(self.blocks[i].pos)
             self.blocks[i].move(cur)
             self.check_for_food(self.blocks[i], food)
             self.blocks[i].draw()
+        self.check_for_dead(new_pos)
+        self.check_for_food(self.blocks[0], food)
             
     def check_for_dead(self, pos):
         pos_times = 0
